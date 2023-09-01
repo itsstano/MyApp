@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Stanley</string>
     <string name="title_activity_image">ImageActivity</string>
+    <string name="title_activity_scroll">ScrollActivity</string>
+    <string name="title_activity_form">FormActivity</string>
+    <string name="title_activity_internet">InternetActivity</string>
+    <string name="title_activity_intent">IntentActivity</string>
+    <string name="title_activity_practical">PracticalActivity</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_lottie_animation">LottieAnimationActivity</string>
 </resources>
