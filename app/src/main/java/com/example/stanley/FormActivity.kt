@@ -51,6 +51,10 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.stanley.ui.theme.StanleyTheme
 
 class FormActivity : ComponentActivity() {
@@ -114,10 +118,14 @@ fun myForm(){
         Spacer(modifier = Modifier.height(10.dp))
         Box(modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center) {
-            Image(
-                painter = painterResource(id = R.drawable.img_4), contentDescription = "",
-                modifier = Modifier.size(200.dp)
-            )
+
+            val composition by
+            rememberLottieComposition(spec= LottieCompositionSpec.RawRes(R.raw.signup))
+            val progress by animateLottieCompositionAsState(composition)
+
+            LottieAnimation(composition,progress,
+                modifier = Modifier.size(200.dp))
+
 
         }
         Spacer(modifier = Modifier.height(10.dp))

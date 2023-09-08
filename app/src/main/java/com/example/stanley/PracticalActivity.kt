@@ -66,10 +66,10 @@ class PracticalActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun work(){
-    val mContext= LocalContext.current
+fun work() {
+    val mContext = LocalContext.current
     var search by remember { mutableStateOf("") }
-    Column (modifier = Modifier.fillMaxSize()) {
+
         //TopApp Bar
         TopAppBar(title = {
             Text(
@@ -80,7 +80,14 @@ fun work(){
         },
             colors = TopAppBarDefaults.largeTopAppBarColors(Color.Gray),
             navigationIcon = {
-                IconButton(onClick = { mContext.startActivity(Intent(mContext,ScrollActivity::class.java))}) {
+                IconButton(onClick = {
+                    mContext.startActivity(
+                        Intent(
+                            mContext,
+                            ScrollActivity::class.java
+                        )
+                    )
+                }) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack, contentDescription = "Arrowback"
                     )
@@ -88,17 +95,21 @@ fun work(){
                 }
             },
             actions = {
-                IconButton(onClick = {val shareIntent=Intent(Intent.ACTION_SEND)
-                    shareIntent.type="text/plain"
-                    shareIntent.putExtra(Intent.EXTRA_TEXT,"Check this out")
-                    mContext.startActivity(shareIntent) }) {
+                IconButton(onClick = {
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Check this out")
+                    mContext.startActivity(shareIntent)
+                }) {
                     Icon(
                         imageVector = Icons.Filled.Share, contentDescription = "Share"
                     )
 
                 }
-                IconButton(onClick = {  val settingsIntent=Intent(Settings.ACTION_SETTINGS)
-                    mContext.startActivity(settingsIntent)}) {
+                IconButton(onClick = {
+                    val settingsIntent = Intent(Settings.ACTION_SETTINGS)
+                    mContext.startActivity(settingsIntent)
+                }) {
                     Icon(
                         imageVector = Icons.Filled.Settings, contentDescription = "Settings"
                     )
@@ -109,57 +120,66 @@ fun work(){
 
         )
         Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(value = search, onValueChange = {search=it},
+        OutlinedTextField(value = search, onValueChange = { search = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "")},
+            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search),
-            placeholder = { Text(text = "Search")})
+            placeholder = { Text(text = "Search") })
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = "The best place to shop for items",
+        Text(
+            text = "The best place to shop for items",
             fontSize = 15.sp,
             modifier = Modifier.padding(start = 10.dp)
-            )
+        )
         Spacer(modifier = Modifier.height(10.dp))
-        //Row 1
-        Row (modifier= Modifier
-            .padding(start = 10.dp)
-            .horizontalScroll(rememberScrollState())){
-            Card (modifier = Modifier
-                .padding(10.dp)
-                .verticalScroll(rememberScrollState())) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_6),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
 
-                    Text(text = "Name : Adidas", fontSize = 15.sp)
-                    Text(text = "Origin : USA", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 2780", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+
+
+            //Row 1
+            Row(
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .horizontalScroll(rememberScrollState())
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_6),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : Adidas", fontSize = 15.sp)
+                        Text(text = "Origin : USA", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 2780", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
 
                     }
-
                 }
-            }
 
 
                 Spacer(modifier = Modifier.width(15.dp))
-                Card (modifier = Modifier.padding(10.dp)) {
+                Card(modifier = Modifier.padding(10.dp)) {
                     Column {
                         Image(
                             painter = painterResource(id = R.drawable.img_7),
@@ -185,193 +205,325 @@ fun work(){
 
                     }
                 }
-                    Spacer(modifier = Modifier.width(15.dp))
-            Card (modifier = Modifier.padding(10.dp)) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_8),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_8),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
 
-                    Text(text = "Name : Watch", fontSize = 15.sp)
-                    Text(text = "Origin : USA", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 3600", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+                        Text(text = "Name : Watch", fontSize = 15.sp)
+                        Text(text = "Origin : USA", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 3600", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
 
-                    }
-
-                }
-            }
-
-
-            Spacer(modifier = Modifier.width(15.dp))
-            Card (modifier = Modifier.padding(10.dp)) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_9),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
-
-                    Text(text = "Name : Bag", fontSize = 15.sp)
-                    Text(text = "Origin : Kenyan", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 1580", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+                        }
 
                     }
-
                 }
-            }
 
 
-            Spacer(modifier = Modifier.width(15.dp))
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_9),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
 
-            }
-        Row (modifier= Modifier
-            .padding(start = 10.dp)
-            .horizontalScroll(rememberScrollState())){
-            Card (modifier = Modifier
-                .padding(10.dp)
-                .verticalScroll(rememberScrollState())) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_6),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
+                        Text(text = "Name : Bag", fontSize = 15.sp)
+                        Text(text = "Origin : Kenyan", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 1580", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
 
-                    Text(text = "Name : Adidas", fontSize = 15.sp)
-                    Text(text = "Origin : USA", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 2780", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+                        }
 
                     }
-
                 }
+
+
+                Spacer(modifier = Modifier.width(15.dp))
+
             }
+            //Row2
+            Row(
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .horizontalScroll(rememberScrollState())
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_6),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
 
+                        Text(text = "Name : Adidas", fontSize = 15.sp)
+                        Text(text = "Origin : USA", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 2780", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
 
-            Spacer(modifier = Modifier.width(15.dp))
-            Card (modifier = Modifier.padding(10.dp)) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_7),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
-
-                    Text(text = "Name : phone", fontSize = 15.sp)
-                    Text(text = "Origin : China", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 100000", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+                        }
 
                     }
-
                 }
-            }
-            Spacer(modifier = Modifier.width(15.dp))
-            Card (modifier = Modifier.padding(10.dp)) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_8),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
 
-                    Text(text = "Name : Watch", fontSize = 15.sp)
-                    Text(text = "Origin : USA", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 3600", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_7),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : phone", fontSize = 15.sp)
+                        Text(text = "Origin : China", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 100000", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
 
                     }
-
                 }
-            }
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_8),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
 
+                        Text(text = "Name : Watch", fontSize = 15.sp)
+                        Text(text = "Origin : USA", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 3600", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
 
-            Spacer(modifier = Modifier.width(15.dp))
-            Card (modifier = Modifier.padding(10.dp)) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_9),
-                        contentDescription = "",
-                        modifier = Modifier.size(180.dp)
-                    )
-
-                    Text(text = "Name : Bag", fontSize = 15.sp)
-                    Text(text = "Origin : Kenyan", fontSize = 15.sp)
-                    Text(text = "Price : Ksh 1580", fontSize = 15.sp)
-                    Button(
-                        onClick = {
-                            val simToolKitlaunchIntent =
-                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
-                            simToolKitlaunchIntent?.let { mContext.startActivity(it) }
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Green),
-                        shape = RectangleShape
-                    ) {
-                        Text(text = "Buy")
+                        }
 
                     }
-
                 }
+
+
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_9),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : Bag", fontSize = 15.sp)
+                        Text(text = "Origin : Kenyan", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 1580", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
+
+                    }
+                }
+
+
+                Spacer(modifier = Modifier.width(15.dp))
+
             }
+            //Row 3
+            Row(
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .horizontalScroll(rememberScrollState())
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_6),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : Adidas", fontSize = 15.sp)
+                        Text(text = "Origin : USA", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 2780", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
+
+                    }
+                }
 
 
-            Spacer(modifier = Modifier.width(15.dp))
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_7),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : phone", fontSize = 15.sp)
+                        Text(text = "Origin : China", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 100000", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
+
+                    }
+                }
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_8),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : Watch", fontSize = 15.sp)
+                        Text(text = "Origin : USA", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 3600", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
+
+                    }
+                }
+
+
+                Spacer(modifier = Modifier.width(15.dp))
+                Card(modifier = Modifier.padding(10.dp)) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_9),
+                            contentDescription = "",
+                            modifier = Modifier.size(180.dp)
+                        )
+
+                        Text(text = "Name : Bag", fontSize = 15.sp)
+                        Text(text = "Origin : Kenyan", fontSize = 15.sp)
+                        Text(text = "Price : Ksh 1580", fontSize = 15.sp)
+                        Button(
+                            onClick = {
+                                val simToolKitlaunchIntent =
+                                    mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                simToolKitlaunchIntent?.let { mContext.startActivity(it) }
+                            },
+                            colors = ButtonDefaults.buttonColors(Color.Green),
+                            shape = RectangleShape
+                        ) {
+                            Text(text = "Buy")
+
+                        }
+
+                    }
+                }
+
+
+
+
+            }
 
         }
 
-        }
 
 
-    }
+}
 
 
 

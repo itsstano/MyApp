@@ -8,4 +8,6 @@
     <string name="title_activity_practical">PracticalActivity</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="title_activity_lottie_animation">LottieAnimationActivity</string>
+    <string name="title_activity_homepage">HomepageActivity</string>
+    <string name="title_activity_location">LocationActivity</string>
 </resources>

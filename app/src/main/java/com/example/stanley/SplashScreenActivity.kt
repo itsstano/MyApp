@@ -11,11 +11,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,7 +46,7 @@ class SplashScreenActivity : ComponentActivity() {
             val coroutinScope= rememberCoroutineScope()
             coroutinScope.launch(){
                 delay(1000)
-                mContext.startActivity(Intent(mContext,PracticalActivity::class.java))
+                mContext.startActivity(Intent(mContext,HomepageActivity::class.java))
                 finish()
             }
 
@@ -65,6 +69,20 @@ fun splash(){
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Cursive,
             color= Color.Red)
+
+        //CircularProgressIndicator
+        CircularProgressIndicator(
+            modifier = Modifier.size(50.dp),
+            color = Color.Black,
+            strokeWidth = 5.dp
+        )
+
+        //LinearProgramming
+        LinearProgressIndicator(
+            modifier = Modifier.padding(20.dp)
+                .height(10.dp),
+            color = Color.Gray
+        )
 
 
 

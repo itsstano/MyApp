@@ -13,6 +13,16 @@
         android:theme="@style/Theme.Stanley"
         tools:targetApi="31">
         <activity
+            android:name=".LocationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_location"
+            android:theme="@style/Theme.Stanley" />
+        <activity
+            android:name=".HomepageActivity"
+            android:exported="false"
+            android:label="@string/title_activity_homepage"
+            android:theme="@style/Theme.Stanley" />
+        <activity
             android:name=".LottieAnimationActivity"
             android:exported="false"
             android:label="@string/title_activity_lottie_animation"
@@ -67,7 +77,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Stanley"></activity>
+            android:theme="@style/Theme.Stanley" />
     </application>
 
 </manifest>

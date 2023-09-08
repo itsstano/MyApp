@@ -153,7 +153,7 @@ fun cardDemo(){
         }
 
 
-        //Row 1
+        //Row 2
         Row (modifier = Modifier.horizontalScroll(rememberScrollState())) {
             //First Card
             Card (modifier = Modifier.size(200.dp)){
@@ -211,7 +211,7 @@ fun cardDemo(){
 
             }
         }
-        //Row 1
+        //Row 3
         Row (modifier = Modifier.horizontalScroll(rememberScrollState())) {
             //First Card
             Card (modifier = Modifier.size(200.dp)){
@@ -270,64 +270,6 @@ fun cardDemo(){
             }
         }
 
-        //Row 1
-        Row (modifier = Modifier.horizontalScroll(rememberScrollState())) {
-            //First Card
-            Card (modifier = Modifier.size(200.dp)){
-                Column(modifier = Modifier.padding(10.dp)) {
-                    Image(painter = painterResource(id = R.drawable.img),
-                        contentDescription ="" ,
-                        modifier = Modifier.size(150.dp))
-                    Text(text = "Bulldog",
-                        fontSize = 20.sp,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold)
-                }
-
-            }
-            Spacer(modifier = Modifier.width(20.dp))
-            //Second Card
-            Card (modifier = Modifier.size(200.dp)){
-                Column(modifier = Modifier.padding(10.dp)) {
-                    Image(painter = painterResource(id = R.drawable.img_1),
-                        contentDescription ="" ,
-                        modifier = Modifier.size(150.dp))
-                    Text(text = "German Shepherd",
-                        fontSize = 20.sp,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold)
-                }
-
-            }
-            Spacer(modifier = Modifier.width(20.dp))
-            //Third Card
-            Card (modifier = Modifier.size(200.dp)){
-                Column(modifier = Modifier.padding(10.dp)) {
-                    Image(painter = painterResource(id = R.drawable.img_2),
-                        contentDescription ="" ,
-                        modifier = Modifier.size(150.dp))
-                    Text(text = "Siberian Husky",
-                        fontSize = 20.sp,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold)
-                }
-
-            }
-            Spacer(modifier = Modifier.width(20.dp))
-            //Fourth Card
-            Card (modifier = Modifier.size(200.dp)){
-                Column(modifier = Modifier.padding(10.dp)) {
-                    Image(painter = painterResource(id = R.drawable.img_2),
-                        contentDescription ="" ,
-                        modifier = Modifier.size(150.dp))
-                    Text(text = "Hybrid",
-                        fontSize = 20.sp,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold)
-                }
-
-            }
-        }
     }
 
 }
